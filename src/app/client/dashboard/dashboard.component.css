@@ -1,0 +1,31 @@
+.dashboard-container {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .dashboard-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .dashboard-card {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .dashboard-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  

@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css */
+
+/* Définition d'une couleur primaire sans SCSS */
+:root {
+    --primary-color: #3f51b5; /* Exemple de couleur primaire */
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa; /* Couleur de fond */
+    color: #333; /* Couleur du texte */
+  }
+  
+  /* Utilisation de la couleur primaire dans le corps */
+  button {
+    background-color: var(--primary-color); /* Utilisation de la variable CSS */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #303f9f; /* Couleur secondaire pour le hover */
+  }
+  

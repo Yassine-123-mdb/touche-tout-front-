@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="../../assets/ServiceBooking_logo.jpg" alt="ServiceBooking Logo" class="logo">
+    <span>Touche à tout</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Basculer la navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item" *ngIf="!isClient">
+        <a class="nav-link active" href="#">Accueil</a>
+      </li>
+      <li class="nav-item" *ngIf="!isClient">
+        <a class="nav-link" href="#about">À propos</a>
+      </li>
+      <li class="nav-item" *ngIf="!isClient">
+        <a class="nav-link" href="#services">Nos Services</a>
+      </li>
+      <li class="nav-item" *ngIf="!isClient">
+        <a class="nav-link" href="#contact">Contact</a>
+      </li>
+
+      <!-- Navbar pour utilisateur client -->
+      <li class="nav-item" *ngIf="isClient">
+        <a class="nav-link active" routerLink="dashboard">Tableau de bord</a>
+      </li>
+      <li class="nav-item" *ngIf="isClient">
+        <a class="nav-link" routerLink="/reserveclient" >Mes Réservations</a>
+      </li>
+      <li class="nav-item" *ngIf="isClient">
+        <a class="nav-link" routerLink="">Mon Profil</a>
+      </li>
+
+      <!-- Dropdown utilisateur connecté -->
+      <li class="nav-item dropdown" *ngIf="isClient">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ username }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#profile">Mon Profil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" (click)="logout()">Déconnexion</button></li>
+        </ul>
+      </li>
+
+      <!-- Bouton Connexion -->
+      <li class="nav-item" *ngIf="!isClient">
+        <button class="btn btn-outline-light" (click)="goToLogin()">Connexion</button>
+      </li>
+    </ul>
+  </div>
+</nav>

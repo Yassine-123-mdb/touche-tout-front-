@@ -1,0 +1,13 @@
+<div class="reservations-container">
+    <h1>Mes Réservations</h1>
+    <div *ngIf="reservations.length === 0">Aucune réservation pour le moment.</div>
+    <ul *ngIf="reservations.length > 0">
+      <li *ngFor="let reservation of reservations">
+        <h3>{{ reservation.service }}</h3>
+        <p>Date : {{ reservation.date }}</p>
+
+        <p>Statut : {{ reservation.status }}</p>
+      </li>
+    </ul>
+  </div>
+  

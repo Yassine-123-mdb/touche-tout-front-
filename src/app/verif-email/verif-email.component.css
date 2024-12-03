@@ -1,0 +1,28 @@
+/* Style de la carte pour avoir une bordure arrondie et ombre */
+.card {
+    border-radius: 8px;
+    border: none;
+  }
+  
+  /* Ombre de la carte */
+  .card.shadow-lg {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Champs de formulaire avec des bordures arrondies */
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  /* Bouton de validation */
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-weight: bold;
+  }
+  
+  /* Message d'erreur */
+  .text-danger {
+    font-size: 12px;
+  }
+  

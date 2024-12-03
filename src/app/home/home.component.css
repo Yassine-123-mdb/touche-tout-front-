@@ -1,0 +1,87 @@
+.carousel-inner {
+    height: 500px; /* Ajustez la hauteur du carrousel selon votre besoin */
+  }
+  
+  .carousel-background {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .carousel-item {
+    position: relative;
+    height: 100%;
+  }
+  /* About Section */
+.icon-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon-box i {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .icon-box h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .icon-box p {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  /* Contact Section */
+  /* Contact Info Styling */
+.contact-info-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .contact-info-box i {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info-box h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .contact-info-box p {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 767px) {
+    /* On mobile, stack the contact information vertically */
+    .contact-info-box {
+      margin-bottom: 30px;
+    }
+  }
+  .container-fluid{
+    margin-top: 100px;
+  }

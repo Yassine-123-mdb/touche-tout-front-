@@ -1,0 +1,59 @@
+<div class="dashboard-container" >
+   
+  
+    <!-- Header -->
+    <header class="header">
+      <h1>Bienvenue, {{ prestataireName }} !</h1>
+      <p>Voici un aperçu de vos activités récentes.</p>
+    </header>
+  
+    <!-- Statistiques rapides -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <h3>{{ totalReservations }}</h3>
+        <p>Total des Réservations</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ pendingReservations }}</h3>
+        <p>Réservations en Attente</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ confirmedReservations }}</h3>
+        <p>Réservations Confirmées</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ servicesCount }}</h3>
+        <p>Services Proposés</p>
+      </div>
+    </div>
+  
+    <!-- Réservations récentes -->
+    <section class="reservations-section">
+      <h2>Réservations Récentes</h2>
+      <div class="reservation-list">
+        <div class="reservation-card" *ngFor="let reservation of recentReservations">
+          <h3>{{ reservation.service }}</h3>
+          <p><strong>Client :</strong> {{ reservation.client }}</p>
+          <p><strong>Date :</strong> {{ reservation.date | date: 'long' }}</p>
+          <span class="badge" [ngClass]="getStatusClass(reservation.status)">
+            {{ reservation.status }}
+          </span>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Services -->
+    <section class="services-section">
+      <h2>Vos Services</h2>
+      <button class="btn btn-primary" (click)="navigateToAddService()">Ajouter un Service</button>
+      <div class="service-list">
+        <div class="service-card" *ngFor="let service of services">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <p><strong>Prix :</strong> {{ service.price }} €</p>
+          <p><strong>Catégorie :</strong> {{ service.category }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  

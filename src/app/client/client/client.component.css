@@ -1,0 +1,71 @@
+.home-container {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero-section h1 span {
+  color: #ffd700;
+}
+
+.cta-button {
+  background: #ffd700;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ffca28;
+}
+
+.offers-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.offers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.offer-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.offer-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.offer-button {
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.offer-button:hover {
+  background: #4b0082;
+}

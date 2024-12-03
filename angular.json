@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "touchatout-front": {
+    "PhoneApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/touchatout-front",
+            "outputPath": "dist/phone-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,15 +31,16 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+                       "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -69,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "touchatout-front:build:production"
+              "buildTarget": "PhoneApp:build:production"
             },
             "development": {
-              "buildTarget": "touchatout-front:build:development"
+              "buildTarget": "PhoneApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +88,7 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json"  ,
             "assets": [
               {
                 "glob": "**/*",

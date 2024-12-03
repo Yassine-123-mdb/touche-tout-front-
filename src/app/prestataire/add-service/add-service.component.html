@@ -1,0 +1,81 @@
+<div class="container my-5">
+    <h3 class="section-title">Services Ajoutés</h3>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let service of services">
+        <div class="card service-card shadow">
+          <div class="card-body">
+            <h5 class="card-title">{{ service.title }}</h5>
+            <p class="card-text text-muted">{{ service.description }}</p>
+            <p class="price"><strong>Prix :</strong> {{ service.price }} €</p>
+            <p class="category"><strong>Catégorie :</strong> {{ service.category }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <h3 class="section-title mt-5">Ajouter un Service</h3>
+    <form [formGroup]="serviceForm" (ngSubmit)="addService()" class="service-form mt-4">
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre du Service</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          formControlName="title"
+          placeholder="Exemple : Nettoyage de vitres"
+        />
+        <div class="text-danger" *ngIf="serviceForm.controls['title'].invalid && serviceForm.controls['title'].touched">
+          Le titre est requis.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+          placeholder="Décrivez votre service en détail"
+        ></textarea>
+        <div class="text-danger" *ngIf="serviceForm.controls['description'].invalid && serviceForm.controls['description'].touched">
+          La description est obligatoire.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="price" class="form-label">Prix</label>
+        <input
+          type="number"
+          id="price"
+          class="form-control"
+          formControlName="price"
+          placeholder="Exemple : 50"
+        />
+        <div class="text-danger" *ngIf="serviceForm.controls['price'].invalid && serviceForm.controls['price'].touched">
+          Le prix est obligatoire et doit être valide.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="category" class="form-label">Catégorie</label>
+        <select id="category" class="form-select" formControlName="category">
+          <option value="" disabled>Choisissez une catégorie</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <div class="text-danger" *ngIf="serviceForm.controls['category'].invalid && serviceForm.controls['category'].touched">
+          La catégorie est requise.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="serviceForm.invalid">Ajouter le Service</button>
+    </form>
+  
+    <div class="alert alert-success mt-3" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+  
+    <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+  </div>
+  
