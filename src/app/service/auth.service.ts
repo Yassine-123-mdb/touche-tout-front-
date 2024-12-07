@@ -38,9 +38,11 @@ public regitredUser : User = new User();
   validateEmail(code : string){
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
-    login(user: User) {
-      return this.http.post(`${this.apiURL}/login`, user, { observe: 'response' });
-    }
+    login(user : User)
+  {
+  return this.http.post<User>(this.apiURL+'/login', user , {observe:'response'});
+  
+  }
     isRole(role: string): boolean {
       return this.roles?.includes(role) ?? false;
     }
