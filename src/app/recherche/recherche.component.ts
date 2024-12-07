@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { MonServiceService } from '../service/mon-service.service';
+import { Router } from '@angular/router';
 import { Prestataire } from '../model/Prestataire';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-recherche',
+  templateUrl: './recherche.component.html',
+  styleUrl: './recherche.component.css'
 })
-export class HomeComponent {
-  serviceImages: string[] = [];
+export class RechercheComponent {
+
+
+serviceImages: string[] = [];
   prestataires: Prestataire[] = [];
   serviceTypes: string[] = ['Jardinage', 'Plomberie', 'Électricité', 'Bricolage', 'Garde d\'enfants', 'Aide à domicile', 'Aide aux devoirs', 'Maçonnerie', 'Peinture', 'Nettoyage de vitres', 'Ménage'];
   selectedService: string = '';
@@ -29,9 +31,28 @@ export class HomeComponent {
       'assets/service/plomb.jfif',
       // Ajoutez d'autres images ici...
     ];
+    this.loadPrestataires();
+  }
+  onSearch(): void {
+    this.loadPrestataires();
+  }
+  onServiceTypeChange(): void {
+    this.loadPrestataires();
   }
 
-  
+  onPriceChange(): void {
+    this.loadPrestataires();
+  }
+
+  onSortPriceChange(sort: string): void {
+    this.priceSort = sort;
+    this.loadPrestataires();
+  }
+  loadPrestataires(): void {
+    this.prestataireService.getPrestataires(this.searchQuery, this.selectedService, { min: this.minPrice, max: this.maxPrice }, this.priceSort).then((results: Prestataire[]) => {
+      this.prestataires = results;
+    });
+  }
 
   goToLogin() {
     this.router.navigate(['/login']);

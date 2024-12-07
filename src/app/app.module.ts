@@ -26,6 +26,7 @@ import { JwtInterceptor } from '../app/service/jwt.interceptor';
 import { DashboardComponent } from './client/dashboard/dashboard.component';
 import { ClientLayoutComponent } from './client/client-layout/client-layout.component';
 import { ReservationClientComponent } from './client/reservation-client/reservation-client.component';
+import { RechercheComponent } from './recherche/recherche.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ReservationClientComponent } from './client/reservation-client/reservat
     PrestataireLayoutComponent,
     DashboardComponent,
     ClientLayoutComponent,
-    ReservationClientComponent
+    ReservationClientComponent,
+    RechercheComponent
   ],
   imports: [
     BrowserModule,

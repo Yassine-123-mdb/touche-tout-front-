@@ -1,0 +1,35 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Rechercher un prestataire..." class="search-input">
+    
+    <select [(ngModel)]="selectedService" (change)="onServiceTypeChange()" class="service-select">
+      <option value="">Sélectionner un type de service</option>
+      <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
+    </select>
+  
+    <div class="price-filter">
+      <label for="minPrice">Prix min :</label>
+      <input type="number" id="minPrice" [(ngModel)]="minPrice" (input)="onPriceChange()" class="price-input">
+      
+      <label for="maxPrice">Prix max :</label>
+      <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (input)="onPriceChange()" class="price-input">
+    </div>
+  
+    <div class="sort-filter">
+      <button (click)="onSortPriceChange('asc')">Prix croissant</button>
+      <button (click)="onSortPriceChange('desc')">Prix décroissant</button>
+    </div>
+  </div>
+  
+  <div *ngIf="prestataires.length > 0; else noResults">
+    <div class="prestataire-cards">
+      <div *ngFor="let prestataire of prestataires" class="prestataire-card">
+        <h3>{{ prestataire.name }}</h3>
+        <p>{{ prestataire.service }}</p>
+        <p>{{ prestataire.price }} €/h</p>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noResults>
+    <p>Aucun prestataire trouvé pour ce type de service ou cette gamme de prix.</p>
+  </ng-template>

@@ -1,13 +1,11 @@
-<div class="dashboard-container" >
+ <div class="dashboard-container" >
    
   
-    <!-- Header -->
     <header class="header">
       <h1>Bienvenue, {{ prestataireName }} !</h1>
       <p>Voici un aperçu de vos activités récentes.</p>
     </header>
   
-    <!-- Statistiques rapides -->
     <div class="stats-section">
       <div class="stat-card">
         <h3>{{ totalReservations }}</h3>
@@ -27,7 +25,6 @@
       </div>
     </div>
   
-    <!-- Réservations récentes -->
     <section class="reservations-section">
       <h2>Réservations Récentes</h2>
       <div class="reservation-list">
@@ -42,7 +39,6 @@
       </div>
     </section>
   
-    <!-- Services -->
     <section class="services-section">
       <h2>Vos Services</h2>
       <button class="btn btn-primary" (click)="navigateToAddService()">Ajouter un Service</button>

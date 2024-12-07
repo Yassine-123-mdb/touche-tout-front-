@@ -16,7 +16,7 @@ export class AuthService {
 
 private helper = new JwtHelperService();
 
-apiURL: string = 'http://localhost:8085/users';
+apiURL: string = 'https://back-touch-a-tout-production.up.railway.app';
 token!:string;
 
 public loggedUser!:string;
