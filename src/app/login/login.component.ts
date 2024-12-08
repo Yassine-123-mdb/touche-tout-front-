@@ -16,7 +16,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLoggedin() {
-    this.authService.login(this.user).subscribe({
+    this.authService.login(this.user)/* .subscribe({
       next: (response) => {
         this.authService.handleLoginResponse(response); // Délègue la logique au service
       },
@@ -29,6 +29,6 @@ export class LoginComponent {
           this.message = 'Login ou mot de passe erronés.';
         }
       },
-    });
+    }); */
   }
 }
