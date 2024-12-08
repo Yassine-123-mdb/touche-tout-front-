@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
       next: () => {
         this.authService.setRegistredUser(this.user);
         this.toastr.success('Veuillez confirmer votre email', 'Confirmation');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/verifEmail']);
       },
       error: (err: any) => {
         if (err.error && err.error.errorCode === 'USER_EMAIL_ALREADY_EXISTS') {
