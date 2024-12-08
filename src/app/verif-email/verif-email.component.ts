@@ -27,7 +27,7 @@ import { AuthService } from '../service/auth.service';
         this.authService.login(this.user).subscribe({
           next: (data) => {
            
-            this.router.navigate(["/"]);
+            this.authService.redirectUser();
           },
           error: (err: any) => {
             console.log(err);
