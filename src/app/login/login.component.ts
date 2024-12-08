@@ -17,14 +17,10 @@ export class LoginComponent {
   onLoggedin() {
     this.authService.login(this.user).subscribe({
       next: (response) => {
-        // On ne fait rien avec le token ici, on traite juste la réponse
-        if (response.body?.enabled === false) {
-          this.message = 'Utilisateur désactivé, veuillez contacter votre administrateur.';
-          this.err = 1;
-        } else {
+        
           this.message = 'Login réussi.';
           this.authService.redirectUser() // Par exemple
-        }
+        
       },
       error: (err) => {
         this.message = 'Erreur lors de la connexion.';
