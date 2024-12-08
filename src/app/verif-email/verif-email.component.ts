@@ -26,8 +26,7 @@ import { AuthService } from '../service/auth.service';
         alert("Login successful");
         this.authService.login(this.user).subscribe({
           next: (data) => {
-            let jwToken = data.headers.get("Authorization")!;
-            this.authService.saveToken(jwToken);
+           
             this.router.navigate(["/"]);
           },
           error: (err: any) => {
@@ -35,15 +34,7 @@ import { AuthService } from '../service/auth.service';
           },
         });
       },
-      error: (err: any) => {
-      if ((err.error.errorCode == "INVALID_TOKEN")) 
-          this.err = "Votre code n'est pas valide !";
-  
-      if ((err.error.errorCode == "EXPIRED_TOKEN")) 
-          this.err = "Votre code a expiré !";
-        
-       
-      },
+      
     });
   }
   }
