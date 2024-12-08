@@ -38,33 +38,19 @@ public regitredUser : User = new User();
   validateEmail(code : string){
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
-    login(user: User) {
-      return this.http.post<User>(this.apiURL + '/login', user, { observe: 'response' }).pipe(
-        tap((response) => {
-          // Assurez-vous d'extraire et de gérer l'utilisateur et son statut 'enabled' ici
-          if (response.body?.enabled === false) {
-            // Ici vous pouvez afficher le message de désactivation
-            console.log('Utilisateur désactivé');
-          } else {
-            // Si l'utilisateur est activé, vous pouvez rediriger ou gérer l'état
-            this.redirectUser();
-          }
-        })
-      );
-    }
-    
+    login(user : User)
+  {
+    return this.http.post<User>(this.apiURL+'/login', user , {observe:'response'});
+  
+  }
     isRole(role: string): boolean {
       return this.roles?.includes(role) ?? false;
     }
     
     handleLoginResponse(response: any) {
-      const jwtToken = response.headers.get('Authorization');
-      if (jwtToken) {
-        this.saveToken(jwtToken); // Sauvegarder et décoder le JWT
+       // Sauvegarder et décoder le JWT
         this.redirectUser(); // Redirection après avoir décodé les rôles
-      } else {
-        console.error("Erreur : le token JWT n'a pas été reçu.");
-      }
+      
     }
     
     redirectUser() {
@@ -163,8 +149,4 @@ public regitredUser : User = new User();
     });
   }*/
     
-}
-
-function tap(arg0: (response: any) => void): import("rxjs").OperatorFunction<import("@angular/common/http").HttpResponse<User>, unknown> {
-  throw new Error('Function not implemented.');
 }

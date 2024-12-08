@@ -14,23 +14,8 @@ export class LoginComponent {
   err: number = 0; // Pour la gestion des erreurs
 
   constructor(private authService: AuthService, private router: Router) {}
-  onLoggedin() {
-    this.authService.login(this.user).subscribe({
-      next: (response) => {
-        
-          this.message = 'Login réussi.';
-          this.authService.redirectUser() // Par exemple
-        
-      },
-      error: (err) => {
-        this.message = 'Erreur lors de la connexion.';
-        this.err = 1;
-      }
-    });
-  }
-  
 
-  /* onLoggedin() {
+  onLoggedin() {
     this.authService.login(this.user).subscribe({
       next: (response) => {
         this.authService.handleLoginResponse(response); // Délègue la logique au service
@@ -45,5 +30,5 @@ export class LoginComponent {
         }
       },
     });
-  } */
+  }
 }
