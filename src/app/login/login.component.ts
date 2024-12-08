@@ -14,9 +14,28 @@ export class LoginComponent {
   err: number = 0; // Pour la gestion des erreurs
 
   constructor(private authService: AuthService, private router: Router) {}
-
   onLoggedin() {
-    this.authService.login(this.user)/* .subscribe({
+    this.authService.login(this.user).subscribe({
+      next: (response) => {
+        // On ne fait rien avec le token ici, on traite juste la réponse
+        if (response.body?.enabled === false) {
+          this.message = 'Utilisateur désactivé, veuillez contacter votre administrateur.';
+          this.err = 1;
+        } else {
+          this.message = 'Login réussi.';
+          this.authService.redirectUser() // Par exemple
+        }
+      },
+      error: (err) => {
+        this.message = 'Erreur lors de la connexion.';
+        this.err = 1;
+      }
+    });
+  }
+  
+
+  /* onLoggedin() {
+    this.authService.login(this.user).subscribe({
       next: (response) => {
         this.authService.handleLoginResponse(response); // Délègue la logique au service
       },
@@ -29,6 +48,6 @@ export class LoginComponent {
           this.message = 'Login ou mot de passe erronés.';
         }
       },
-    }); */
-  }
+    });
+  } */
 }

@@ -41,6 +41,7 @@ public regitredUser : User = new User();
     login(user : User)
   {
     return this.http.post<User>(this.apiURL+'/login', user , {observe:'response'});
+    
   
   }
     isRole(role: string): boolean {
