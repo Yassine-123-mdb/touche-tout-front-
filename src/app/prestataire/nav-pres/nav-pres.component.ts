@@ -13,7 +13,7 @@ export class NavPresComponent {
 
   ngOnInit(): void {
     // Récupérez le nom du prestataire connecté
-    this.prestataireName = this.authService.loggedUser;
+    this.prestataireName = this.authService.getUserData().username;
   }
 
   logout(): void {
