@@ -48,9 +48,13 @@ public regitredUser : User = new User();
     }
     
     handleLoginResponse(response: any) {
-       // Sauvegarder et décoder le JWT
+      const jwtToken = response.headers.get('Authorization');
+      if (jwtToken) {
+        this.saveToken(jwtToken); // Sauvegarder et décoder le JWT
         this.redirectUser(); // Redirection après avoir décodé les rôles
-      
+      } else {
+        console.error("Erreur : le token JWT n'a pas été reçu.");
+      }
     }
     
     redirectUser() {
