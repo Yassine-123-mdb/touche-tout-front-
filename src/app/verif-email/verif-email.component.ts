@@ -20,7 +20,7 @@ import { AuthService } from '../service/auth.service';
   private router:Router
   ) {}
   ngOnInit(): void {
-  this.user =this.authService.regitredUser;
+  this.user =this.authService.getRegistredUser();
   }
   onValidateEmail() {
     this.authService.validateEmail(this.code).subscribe({

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 
@@ -38,11 +40,11 @@ public regitredUser : User = new User();
   validateEmail(code : string){
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
-    login(user : User)
-  {
-    return this.http.post<User>(this.apiURL+'/login', user , {observe:'response'});
-  
-  }
+    login(user: User): Observable<User> {
+      return this.http.post<User>(this.apiURL+'/login', user).pipe(
+        map((response: any) => response as User) // Transforme la réponse si nécessaire
+      );}
+
     isRole(role: string): boolean {
       return this.roles?.includes(role) ?? false;
     }
