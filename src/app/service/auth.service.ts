@@ -49,6 +49,10 @@ private userData: any;
         })
       );
     }
+    getCurrentUserId(): number | null {
+      const userData = this.getUserData();
+      return userData?.user_id || null; // Suppose que l'ID utilisateur est stocké sous `id`
+    }
     storeUserData(user: any) {
       localStorage.setItem('user', JSON.stringify(user)); // Sauvegarder les données utilisateur dans localStorage
       this.userData = user; // Optionnel : garder une copie des données dans le service

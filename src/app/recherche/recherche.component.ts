@@ -23,7 +23,7 @@ serviceImages: string[] = [];
   constructor(private router: Router,private prestataireService: MonServiceService) {}
 
   
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     // Chemins des images dans le dossier assets/service
     this.serviceImages = [
       'assets/service/batiment.jfif',
@@ -56,7 +56,7 @@ serviceImages: string[] = [];
 
   goToLogin() {
     this.router.navigate(['/login']);
-  }
+  } */
 
   goToSelectProvider() {
     this.router.navigate(['/select-provider']);
