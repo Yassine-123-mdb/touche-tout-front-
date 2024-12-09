@@ -12,7 +12,6 @@ export class LoginComponent {
   user = new User(); // Modèle utilisateur
   message: string = 'Login ou mot de passe erronés..';
   err: number = 0; // Pour la gestion des erreurs
-  public roles!:string[];
   public regitredUser : User = new User();
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -23,14 +22,14 @@ export class LoginComponent {
 
         // Traitez la réponse pour extraire les rôles
         this.regitredUser = response; // L'utilisateur complet de l'API
-        this.roles = this.regitredUser.roles.map((role: any) => role.role);
-  
+        const roles = response.roles.map((role: any) => role.role);
+        console.log('Response:', response);
         // Navigation selon le rôle
-        if (this.roles.includes('ADMIN')) {
+        if (roles.includes('ADMIN')) {
           this.router.navigate(['/admin']);
-        } else if (this.roles.includes('CLIENT')) {
+        } else if (roles.includes('CLIENT')) {
           this.router.navigate(['/client']);
-        } else if (this.roles.includes('PRESTATAIRE')) {
+        } else if (roles.includes('PRESTATAIRE')) {
           this.router.navigate(['/prestataire']);
         } else {
           alert("Rôle inconnu ou non pris en charge");
