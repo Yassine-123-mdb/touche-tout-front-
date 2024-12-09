@@ -22,8 +22,8 @@ import { ClientComponent } from './client/client/client.component';
 import { ReservationComponent } from './prestataire/reservation/reservation.component';
 import { PrestataireLayoutComponent } from './prestataire/prestataire-layout/prestataire-layout.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-/* import { JwtInterceptor } from '../app/service/jwt.interceptor';
- */import { DashboardComponent } from './client/dashboard/dashboard.component';
+import { JwtInterceptor } from '../app/service/jwt.interceptor';
+import { DashboardComponent } from './client/dashboard/dashboard.component';
 import { ClientLayoutComponent } from './client/client-layout/client-layout.component';
 import { ReservationClientComponent } from './client/reservation-client/reservation-client.component';
 import { RechercheComponent } from './recherche/recherche.component';
@@ -59,7 +59,7 @@ import { RechercheComponent } from './recherche/recherche.component';
     HttpClientModule,
     ToastrModule.forRoot(),
   ],
-  providers: [/* { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true } */],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

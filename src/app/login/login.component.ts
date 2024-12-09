@@ -19,6 +19,8 @@ export class LoginComponent {
   onLoggedin() {
     this.authService.login(this.user).subscribe({
       next: (response: any) => {
+        console.log('Response:', response);
+
         // Traitez la réponse pour extraire les rôles
         this.regitredUser = response; // L'utilisateur complet de l'API
         this.roles = this.regitredUser.roles.map((role: any) => role.role);
