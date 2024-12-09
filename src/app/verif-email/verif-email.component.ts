@@ -13,6 +13,8 @@ import { AuthService } from '../service/auth.service';
   code:string="";
   user:User=new User();
   err="";
+  public roles!:string[];
+  public regitredUser : User = new User();
   
   constructor(private route:ActivatedRoute,private authService:AuthService,
   private router:Router
@@ -25,15 +27,19 @@ import { AuthService } from '../service/auth.service';
       next: (res) => {
         alert("Login successful");
        
-           
-            this.authService.redirectUser();
+            this.regitredUser = res;
+            this.roles = res.roles;
+            if (this.roles?.includes('ADMIN')) {
+              this.router.navigate(['/admin']);
+            } else if (this.roles?.includes('CLIENT')) {
+              this.router.navigate(['/client']);
+            } else {
+              this.router.navigate(['/prestataire']);
+            }
           },
           error: (err: any) => {
             console.log(err);
           },
         });
       }
-      
-  
   }
-  
