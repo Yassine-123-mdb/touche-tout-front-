@@ -18,30 +18,28 @@ export class LoginComponent {
   onLoggedin() {
     this.authService.login(this.user).subscribe({
       next: (response: any) => {
-        console.log('Response:', response);
-
-        // Traitez la réponse pour extraire les rôles
-        this.regitredUser = response; // L'utilisateur complet de l'API
+        // Stocker les informations de l'utilisateur dans le service
+        this.authService.storeUserData(response);  // Vous pouvez aussi mettre à jour un état global si nécessaire
+  
+        // Récupérer le rôle pour la navigation
         const roles = response.roles.map((role: any) => role.role);
-        console.log('Response:', response);
-        // Navigation selon le rôle
+  
+        // Naviguer selon le rôle
         if (roles.includes('ADMIN')) {
           this.router.navigate(['/admin']);
         } else if (roles.includes('CLIENT')) {
           this.router.navigate(['/client']);
         } else if (roles.includes('PRESTATAIRE')) {
           this.router.navigate(['/prestataire']);
-        } else {
-          alert("Rôle inconnu ou non pris en charge");
         }
       },
       error: (err: any) => {
         console.error(err);
         alert('Erreur de connexion : vérifiez vos informations.');
-      },
+      }
     });
   }
-}  
+}    
   
 
   /* onLoggedin() {

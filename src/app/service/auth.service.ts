@@ -22,9 +22,10 @@ apiURL: string = 'https://back-touch-a-tout-production.up.railway.app';
 token!:string;
 
 public loggedUser!:string;
-public isloggedIn: Boolean = false;
+
 public roles!:string[];
 public regitredUser : User = new User();
+private userData: any;
 
   constructor(private router : Router,
               private http : HttpClient
@@ -41,14 +42,37 @@ public regitredUser : User = new User();
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
     login(user: User): Observable<User> {
-      return this.http.post<User>(this.apiURL+'/login', user);
+      return this.http.post<User>(this.apiURL+'/login', user).pipe(
+        tap(response => {
+          // Stocker les informations de l'utilisateur dans le localStorage
+          localStorage.setItem('user', JSON.stringify(response));  // Stocker les données utilisateur
+        })
+      );
+    }
+    storeUserData(user: any) {
+      localStorage.setItem('user', JSON.stringify(user)); // Sauvegarder les données utilisateur dans localStorage
+      this.userData = user; // Optionnel : garder une copie des données dans le service
+    }
+  
+    // Méthode pour récupérer les données utilisateur
+    getUserData() {
+      const user = localStorage.getItem('user');
+      if (user) {
+        this.userData = JSON.parse(user);
       }
-
+      return this.userData;
+    }
+  
+    // Méthode pour vérifier si l'utilisateur est connecté
+    isloggedIn(): boolean {
+      return !!localStorage.getItem('user'); // Vérifie si des données utilisateur existent dans le localStorage
+    }
+      
     isRole(role: string): boolean {
       return this.roles?.includes(role) ?? false;
     }
     
-    handleLoginResponse(response: any) {
+   /*  handleLoginResponse(response: any) {
       const jwtToken = response.headers.get('Authorization');
       if (jwtToken) {
         this.saveToken(jwtToken); // Sauvegarder et décoder le JWT
@@ -56,7 +80,7 @@ public regitredUser : User = new User();
       } else {
         console.error("Erreur : le token JWT n'a pas été reçu.");
       }
-    }
+    } */
     
     redirectUser() {
       if (this.roles?.includes('ADMIN')) {
@@ -74,7 +98,7 @@ public regitredUser : User = new User();
     return this.http.post<User>(this.apiURL+'/register', user,
     {observe:'response'});
     }
-  saveToken(jwt:string){
+ /* saveToken(jwt:string){
     localStorage.setItem('jwt',jwt);
     this.token = jwt;
     this.isloggedIn = true;
@@ -118,17 +142,17 @@ public regitredUser : User = new User();
     ;
   }  
 
-
+  
   logout() {
   this.loggedUser = undefined!;
   this.roles = undefined!;
   this.token= undefined!;
-  this.isloggedIn = false;
+  
   localStorage.removeItem('jwt');
   this.router.navigate(['/login']);
   }
 
-  setLoggedUserFromLocalStorage(login: string) {
+ /*  setLoggedUserFromLocalStorage(login: string) {
     this.loggedUser = login;
     this.isloggedIn = true;
    // this.getUserRoles(login);
@@ -142,7 +166,7 @@ public regitredUser : User = new User();
   isTokenExpired(): Boolean
   {
     return  this.helper.isTokenExpired(this.token);   
-  }
+  } */
 
 
 
@@ -154,4 +178,8 @@ public regitredUser : User = new User();
     });
   }*/
     
+}
+
+function tap(arg0: (response: any) => void): import("rxjs").OperatorFunction<User, User> {
+  throw new Error('Function not implemented.');
 }
