@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../model/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -178,8 +178,4 @@ private userData: any;
     });
   }*/
     
-}
-
-function tap(arg0: (response: any) => void): import("rxjs").OperatorFunction<User, User> {
-  throw new Error('Function not implemented.');
 }
