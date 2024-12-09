@@ -144,12 +144,9 @@ private userData: any;
 
   
   logout() {
-  this.loggedUser = undefined!;
-  this.roles = undefined!;
-  this.token= undefined!;
-  
-  localStorage.removeItem('jwt');
-  this.router.navigate(['/login']);
+    localStorage.removeItem('user'); // Supprimer les données utilisateur du localStorage
+    this.userData = null; // Réinitialiser les données utilisateur
+    this.router.navigate(['/login']);
   }
 
  /*  setLoggedUserFromLocalStorage(login: string) {
