@@ -24,8 +24,7 @@ import { AuthService } from '../service/auth.service';
     this.authService.validateEmail(this.code).subscribe({
       next: (res) => {
         alert("Login successful");
-        this.authService.login(this.user).subscribe({
-          next: (data) => {
+       
            
             this.authService.redirectUser();
           },
@@ -33,8 +32,8 @@ import { AuthService } from '../service/auth.service';
             console.log(err);
           },
         });
-      },
+      }
       
-    });
+  
   }
-  }
+  
