@@ -41,9 +41,8 @@ public regitredUser : User = new User();
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
     login(user: User): Observable<User> {
-      return this.http.post<User>(this.apiURL+'/login', user).pipe(
-        map((response: any) => response as User) // Transforme la réponse si nécessaire
-      );}
+      return this.http.post<User>(this.apiURL+'/login', user);
+      }
 
     isRole(role: string): boolean {
       return this.roles?.includes(role) ?? false;

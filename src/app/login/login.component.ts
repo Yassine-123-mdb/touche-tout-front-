@@ -19,24 +19,28 @@ export class LoginComponent {
   onLoggedin() {
     this.authService.login(this.user).subscribe({
       next: (response: any) => {
-        const user: User = response.body || response; // Extraction selon le format de l'API
-        this.regitredUser = user;
-        this.roles = user.roles;
-        if (this.roles?.includes('ADMIN')) {
+        // Traitez la réponse pour extraire les rôles
+        this.regitredUser = response; // L'utilisateur complet de l'API
+        this.roles = this.regitredUser.roles.map((role: any) => role.role);
+  
+        // Navigation selon le rôle
+        if (this.roles.includes('ADMIN')) {
           this.router.navigate(['/admin']);
-        } else if (this.roles?.includes('CLIENT')) {
+        } else if (this.roles.includes('CLIENT')) {
           this.router.navigate(['/client']);
-        } else {
+        } else if (this.roles.includes('PRESTATAIRE')) {
           this.router.navigate(['/prestataire']);
+        } else {
+          alert("Rôle inconnu ou non pris en charge");
         }
       },
       error: (err: any) => {
-        console.log(err);
-        alert('Erreur de connexion');
+        console.error(err);
+        alert('Erreur de connexion : vérifiez vos informations.');
       },
     });
   }
-}
+}  
   
 
   /* onLoggedin() {
