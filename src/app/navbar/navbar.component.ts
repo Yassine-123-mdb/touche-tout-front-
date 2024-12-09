@@ -31,7 +31,7 @@ export class NavbarComponent {
 
   // Récupérez le nom d'utilisateur
   get username(): string | null {
-    return this.authService.loggedUser;
+    return this.authService.getUserData().username;
   }
   
 

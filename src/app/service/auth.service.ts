@@ -59,6 +59,7 @@ private userData: any;
       const user = localStorage.getItem('user');
       if (user) {
         this.userData = JSON.parse(user);
+        
       }
       return this.userData;
     }
