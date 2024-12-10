@@ -6,11 +6,11 @@
         <img *ngIf="service.image" [src]="service.image" class="card-img-top" alt="{{ service.title }}">
         <div class="card-body">
           <h5 class="card-title">{{ service.title }}</h5>
-          <p class="card-text"><strong>Description :</strong> {{ service.description }}</p>
-          <p><strong>Prix :</strong> {{ service.price }} €</p>
-          <p><strong>Catégorie :</strong> {{ service.category }}</p>
-          <p *ngIf="service.duration"><strong>Durée :</strong> {{ service.duration }}</p>
-          <p *ngIf="service.notes"><strong>Notes :</strong> {{ service.notes }}</p>
+          <p class="card-text text-muted">{{ service.description }}</p>
+          <p class="price"><strong>Prix :</strong> {{ service.price }} €</p>
+          <p class="category"><strong>Catégorie :</strong> {{ service.category }}</p>
+          <p *ngIf="service.duration"><strong>Durée estimée :</strong> {{ service.duration }} minutes</p>
+          <p *ngIf="service.notes" class="text-info"><strong>Notes :</strong> {{ service.notes }}</p>
           <button class="btn btn-warning btn-sm me-2" (click)="editService(service)">Modifier</button>
           <button class="btn btn-danger btn-sm" (click)="deleteService(service.id)">Supprimer</button>
         </div>
@@ -19,15 +19,21 @@
   </div>
 
   <h3 class="section-title mt-5">Ajouter ou Modifier un Service</h3>
-  <form [formGroup]="serviceForm" (ngSubmit)="saveService()" class="mt-4">
+  <form [formGroup]="serviceForm" (ngSubmit)="addService()" class="service-form mt-4">
     <div class="mb-3">
       <label for="title" class="form-label">Titre du Service</label>
       <input type="text" id="title" class="form-control" formControlName="title">
+      <div class="text-danger" *ngIf="serviceForm.controls['title'].invalid && serviceForm.controls['title'].touched">
+        Le titre est requis.
+      </div>
     </div>
 
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea id="description" class="form-control" formControlName="description"></textarea>
+      <div class="text-danger" *ngIf="serviceForm.controls['description'].invalid && serviceForm.controls['description'].touched">
+        La description est obligatoire.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -37,25 +43,28 @@
 
     <div class="mb-3">
       <label for="category" class="form-label">Catégorie</label>
-      <input type="text" id="category" class="form-control" formControlName="category">
+      <select id="category" class="form-select" formControlName="category">
+        <option value="" disabled>Choisissez une catégorie</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
     </div>
 
     <div class="mb-3">
-      <label for="duration" class="form-label">Durée (optionnel)</label>
-      <input type="text" id="duration" class="form-control" formControlName="duration">
+      <label for="duration" class="form-label">Durée estimée (en minutes)</label>
+      <input type="number" id="duration" class="form-control" formControlName="duration">
     </div>
 
     <div class="mb-3">
-      <label for="notes" class="form-label">Notes (optionnel)</label>
+      <label for="notes" class="form-label">Notes spéciales</label>
       <textarea id="notes" class="form-control" formControlName="notes"></textarea>
     </div>
-
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="file" id="image" class="form-control" (change)="onFileSelect($event)">
+      <input type="file" id="image" class="form-control" (change)="onImageSelected($event)">
     </div>
+    
 
-    <button type="submit" class="btn btn-primary" [disabled]="serviceForm.invalid">
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="serviceForm.invalid">
       {{ isEditing ? 'Mettre à Jour' : 'Ajouter le Service' }}
     </button>
   </form>
