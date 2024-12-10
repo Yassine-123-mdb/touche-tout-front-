@@ -10,10 +10,9 @@ import { MonServiceService } from '../../service/mon-service.service';
 export class AddServiceComponent implements OnInit {
   serviceForm!: FormGroup;
   services: any[] = [];
+  selectedFile: File | null = null;
   isEditing = false;
   editingServiceId: string | null = null;
-  selectedFile: File | null = null;
-  categories: string[] = ['Nettoyage', 'Jardinage', 'Plomberie', 'Électricité', 'Informatique'];
 
   constructor(private fb: FormBuilder, private serviceService: MonServiceService) {}
 
@@ -33,44 +32,44 @@ export class AddServiceComponent implements OnInit {
       image: ['']
     });
   }
-  onFileChange(event: any): void {
-    if (event.target.files && event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0];
-    }
-  }
+
   loadServices(): void {
-    this.serviceService.getServices().subscribe((data: any) => {
-      this.services = data;
-    });
+    this.serviceService.getServices().subscribe(data => this.services = data);
   }
 
   saveService(): void {
-    const serviceData = this.serviceForm.value;
-
     const formData = new FormData();
-    formData.append('title', serviceData.title);
-    formData.append('description', serviceData.description);
-    formData.append('price', serviceData.price);
-    formData.append('category', serviceData.category);
-    formData.append('duration', serviceData.duration || '');
-    formData.append('notes', serviceData.notes || '');
+    Object.keys(this.serviceForm.controls).forEach(key => {
+      if (key !== 'image') {
+        formData.append(key, this.serviceForm.get(key)!.value);
+      }
+    });
     if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
+      formData.append('file', this.selectedFile);
     }
 
     if (this.isEditing && this.editingServiceId) {
       this.serviceService.updateService(this.editingServiceId, formData).subscribe(() => {
-        this.isEditing = false;
-        this.editingServiceId = null;
-        this.serviceForm.reset();
+        this.resetForm();
         this.loadServices();
       });
     } else {
       this.serviceService.addService(formData).subscribe(() => {
-        this.serviceForm.reset();
+        this.resetForm();
         this.loadServices();
       });
     }
+  }
+
+  onFileSelect(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  resetForm(): void {
+    this.serviceForm.reset();
+    this.selectedFile = null;
+    this.isEditing = false;
+    this.editingServiceId = null;
   }
 
   editService(service: any): void {
@@ -80,15 +79,6 @@ export class AddServiceComponent implements OnInit {
   }
 
   deleteService(serviceId: string): void {
-    this.serviceService.deleteService(serviceId).subscribe(
-      (response) => {
-        console.log(response); // Affiche le message de succès
-        this.loadServices();
-      },
-      (error) => {
-        console.error('Erreur de suppression', error);
-      }
-    );
+    this.serviceService.deleteService(serviceId).subscribe(() => this.loadServices());
   }
-
 }
