@@ -42,7 +42,7 @@ private userData: any;
     return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
     }
     login(user: User): Observable<User> {
-      return this.http.post<User>(this.apiURL+'/login', user).pipe(
+      return this.http.post<User>(this.apiURL+'api/services/login', user).pipe(
         tap(response => {
           // Stocker les informations de l'utilisateur dans le localStorage
           localStorage.setItem('user', JSON.stringify(response));  // Stocker les données utilisateur
