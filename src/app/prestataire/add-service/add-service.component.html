@@ -67,7 +67,7 @@
 
     <div class="mb-3">
         <label for="image" class="form-label">Image du Service</label>
-        <input type="file" id="image" class="form-control"  (change)="onImageSelected($event)">
+        <input type="file" id="image" class="form-control"  (change)="onFileChange($event)">
         <img *ngIf="previewImage" [src]="previewImage" alt="Aperçu" class="img-thumbnail mt-2" style="max-width: 200px;">
       </div>
       
