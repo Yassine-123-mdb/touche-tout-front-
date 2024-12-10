@@ -14,18 +14,13 @@ export class MonServiceService {
   // Récupérer les services pour l'utilisateur connecté
   getServices(): Observable<any[]> {
     const userId = this.authService.getCurrentUserId();
-    if (!userId) {
-      throw new Error('Utilisateur non connecté');
-    }
+    
     return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
 
   // Ajouter un nouveau service pour l'utilisateur connecté
   addService(service: any): Observable<any> {
     const userId = this.authService.getCurrentUserId();
-    if (!userId) {
-      throw new Error('Utilisateur non connecté');
-    }
     return this.http.post(`${this.apiUrl}/add/${userId}`, service);
   }
 
