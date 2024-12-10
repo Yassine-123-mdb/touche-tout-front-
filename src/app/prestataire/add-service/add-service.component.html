@@ -58,6 +58,11 @@
       <label for="notes" class="form-label">Notes spéciales</label>
       <textarea id="notes" class="form-control" formControlName="notes"></textarea>
     </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
+    </div>
+    
 
     <button type="submit" class="btn btn-primary btn-block" [disabled]="serviceForm.invalid">
       {{ isEditing ? 'Mettre à Jour' : 'Ajouter le Service' }}

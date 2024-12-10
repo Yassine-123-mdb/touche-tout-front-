@@ -12,6 +12,7 @@ export class AddServiceComponent implements OnInit {
   services: any[] = [];
   isEditing = false;
   editingServiceId: string | null = null;
+  selectedFile: File | null = null;
   categories: string[] = ['Nettoyage', 'Jardinage', 'Plomberie', 'Électricité', 'Informatique'];
 
   constructor(private fb: FormBuilder, private serviceService: MonServiceService) {}
@@ -32,7 +33,11 @@ export class AddServiceComponent implements OnInit {
       image: ['']
     });
   }
-
+  onFileChange(event: any): void {
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+  }
   loadServices(): void {
     this.serviceService.getServices().subscribe((data: any) => {
       this.services = data;
@@ -42,15 +47,26 @@ export class AddServiceComponent implements OnInit {
   saveService(): void {
     const serviceData = this.serviceForm.value;
 
+    const formData = new FormData();
+    formData.append('title', serviceData.title);
+    formData.append('description', serviceData.description);
+    formData.append('price', serviceData.price);
+    formData.append('category', serviceData.category);
+    formData.append('duration', serviceData.duration || '');
+    formData.append('notes', serviceData.notes || '');
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+
     if (this.isEditing && this.editingServiceId) {
-      this.serviceService.updateService(this.editingServiceId, serviceData).subscribe(() => {
+      this.serviceService.updateService(this.editingServiceId, formData).subscribe(() => {
         this.isEditing = false;
         this.editingServiceId = null;
         this.serviceForm.reset();
         this.loadServices();
       });
     } else {
-      this.serviceService.addService(serviceData).subscribe(() => {
+      this.serviceService.addService(formData).subscribe(() => {
         this.serviceForm.reset();
         this.loadServices();
       });
