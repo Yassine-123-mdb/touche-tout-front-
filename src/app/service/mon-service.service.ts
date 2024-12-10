@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -36,6 +36,12 @@ export class MonServiceService {
 
   // Supprimer un service par ID
   deleteService(serviceId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${serviceId}`);
+    return this.http.delete(`${this.apiUrl}/delete/${serviceId}`, { responseType: 'text' }).pipe(
+      catchError((error) => {
+        console.error('Erreur lors de la suppression du service', error);
+        throw error;
+      })
+    );
   }
+  
 }

@@ -64,8 +64,15 @@ export class AddServiceComponent implements OnInit {
   }
 
   deleteService(serviceId: string): void {
-    this.serviceService.deleteService(serviceId).subscribe(() => {
-      this.loadServices();
-    });
+    this.serviceService.deleteService(serviceId).subscribe(
+      (response) => {
+        console.log(response); // Affiche le message de succès
+        this.loadServices();
+      },
+      (error) => {
+        console.error('Erreur de suppression', error);
+      }
+    );
   }
+
 }
