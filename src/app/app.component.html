@@ -1,4 +1,4 @@
-<app-navbar *ngIf="!isPrestInterface()"></app-navbar>
-<app-nav-pres *ngIf="isClientInterface()"></app-nav-pres>
-
+<app-navbar *ngIf="!isPrestInterface() && !isClientInterface()"></app-navbar>
+<app-nav-pres *ngIf="isPrestInterface()"></app-nav-pres>
+<app-navbar-client *ngIf="isClientInterface()"></app-navbar-client>
 <router-outlet></router-outlet>

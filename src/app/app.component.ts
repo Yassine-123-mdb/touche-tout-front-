@@ -14,11 +14,9 @@ export class AppComponent {
   // Fonction pour vérifier si l'utilisateur est sur une route spécifique
   isClientInterface(): boolean {
     // Vérifie si l'URL inclut '/prestataire'
-    return this.router.url.startsWith('/prestataire');}
+    return this.router.url.startsWith('/client');}
     isPrestInterface(): boolean {
       // Vérifie si l'URL inclut '/prestataire'
       return this.router.url.startsWith('/prestataire');
-  
-  
 }
 }

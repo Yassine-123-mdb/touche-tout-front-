@@ -27,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClientLayoutComponent } from './client/client-layout/client-layout.component';
 import { ReservationClientComponent } from './client/reservation-client/reservation-client.component';
 import { RechercheComponent } from './recherche/recherche.component';
+import { NavbarClientComponent } from './client/navbar-client/navbar-client.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { RechercheComponent } from './recherche/recherche.component';
     DashboardComponent,
     ClientLayoutComponent,
     ReservationClientComponent,
-    RechercheComponent
+    RechercheComponent,
+    NavbarClientComponent
   ],
   imports: [
     BrowserModule,
