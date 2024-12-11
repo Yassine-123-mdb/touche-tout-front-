@@ -74,7 +74,8 @@ private userData: any;
     }
       
     isRole(role: string): boolean {
-      return this.roles?.includes(role) ?? false;
+      const user = this.getUserData();
+      return user?.roles?.includes(role) ?? false;
     }
     
    /*  handleLoginResponse(response: any) {
