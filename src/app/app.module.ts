@@ -28,6 +28,7 @@ import { ClientLayoutComponent } from './client/client-layout/client-layout.comp
 import { ReservationClientComponent } from './client/reservation-client/reservation-client.component';
 import { RechercheComponent } from './recherche/recherche.component';
 import { NavbarClientComponent } from './client/navbar-client/navbar-client.component';
+import { ListServiceComponent } from './client/list-service/list-service.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { NavbarClientComponent } from './client/navbar-client/navbar-client.comp
     ClientLayoutComponent,
     ReservationClientComponent,
     RechercheComponent,
-    NavbarClientComponent
+    NavbarClientComponent,
+    ListServiceComponent
   ],
   imports: [
     BrowserModule,
