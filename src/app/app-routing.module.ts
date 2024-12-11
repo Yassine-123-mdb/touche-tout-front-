@@ -13,6 +13,7 @@ import { AuthGuard } from './verif-email/auth.guard';
 import { ClientLayoutComponent } from './client/client-layout/client-layout.component';
 import { DashboardComponent } from './client/dashboard/dashboard.component';
 import { ReservationClientComponent } from './client/reservation-client/reservation-client.component';
+import { ListServiceComponent } from './client/list-service/list-service.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
     component: ClientLayoutComponent,canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: '', component: ReservationClientComponent },
+      { path: 'listService', component: ListServiceComponent },
+      { path: 'reserveclient', component: ReservationClientComponent },
     ],
   },
 

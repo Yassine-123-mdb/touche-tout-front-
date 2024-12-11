@@ -1,1 +1,12 @@
-<p>list-service works!</p>
+<div class="service-container">
+    <div class="service-card" *ngFor="let service of services">
+      <img [src]="service.imageUrl" alt="Service Image" class="service-image">
+      <div class="service-details">
+        <h2 class="service-title">{{ service.title }}</h2>
+        <p class="service-description">{{ service.description }}</p>
+        <p class="service-price">{{ service.price | currency }}</p>
+        <button class="select-button" (click)="selectService(service)">Select Service</button>
+      </div>
+    </div>
+  </div>
+  
