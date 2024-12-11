@@ -1,31 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MonServiceService } from '../../service/mon-service.service';
 
 @Component({
   selector: 'app-list-service',
   templateUrl: './list-service.component.html',
   styleUrl: './list-service.component.css'
 })
-export class ListServiceComponent {
-  services = [
-    {
-      title: 'Premium Cleaning',
-      description: 'Top-notch cleaning services to make your home shine.',
-      price: 100,
-      imageUrl: 'https://via.placeholder.com/300x200'
-    },
-    {
-      title: 'Gardening Maintenance',
-      description: 'Professional gardening services for a beautiful yard.',
-      price: 80,
-      imageUrl: 'https://via.placeholder.com/300x200'
-    },
-    {
-      title: 'Personal Training',
-      description: 'Achieve your fitness goals with expert trainers.',
-      price: 120,
-      imageUrl: 'https://via.placeholder.com/300x200'
+export class ListServiceComponent implements OnInit {
+    services: any[] = [];
+  
+    constructor(private monService: MonServiceService) {}
+  
+    ngOnInit(): void {
+      this.loadServices();
     }
-  ];
+  
+    // Charger tous les services
+    loadServices(): void {
+      this.monService.getAllServices().subscribe(
+        (data) => {
+          this.services = data;
+          console.log('Services chargés :', data);
+        },
+        (error) => {
+          console.error('Erreur lors du chargement des services :', error);
+        }
+      );
+    }
+  
 
   selectService(service: any) {
     console.log('Service selected:', service);
