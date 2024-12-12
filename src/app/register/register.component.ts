@@ -28,8 +28,8 @@ export class RegisterComponent implements OnInit {
       {
         prenom: ['', [Validators.required]],
         adress: ['', [Validators.required]],
-        tel: ['', [Validators.required]],
-        siret: ['', [Validators.required]],
+        tel: ['', [Validators.required, this.numberValidator]],  // Added numberValidator
+        siret: ['', [Validators.required, this.numberValidator]],  // Added numberValidator
         role: ['', [Validators.required]],
         username: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
@@ -56,6 +56,15 @@ export class RegisterComponent implements OnInit {
     const password = control.value;
     if (password && !/(?=.*[A-Z])/.test(password)) {
       return { weakPassword: true };
+    }
+    return null;
+  }
+
+  // Custom validator to check if the value is a number
+  numberValidator(control: any): any {
+    const value = control.value;
+    if (value && !/^\d+$/.test(value)) {  // Ensures the value is composed only of digits
+      return { invalidNumber: true };
     }
     return null;
   }

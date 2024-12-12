@@ -42,13 +42,18 @@
             </small>
           </div>
 
-          <!-- Téléphone -->
+         
+
+          <!-- SIRET -->
           <div class="form-group mb-3">
             <label for="tel" class="form-label">Numéro de téléphone :</label>
             <input id="tel" type="text" name="tel" class="form-control"
               formControlName="tel" placeholder="Entrez votre numéro de téléphone" required>
             <small *ngIf="submitted && myForm.controls['tel'].hasError('required')" class="text-danger">
               Numéro de téléphone est obligatoire
+            </small>
+            <small *ngIf="submitted && myForm.controls['tel'].hasError('invalidNumber')" class="text-danger">
+              Numéro de téléphone doit être composé uniquement de chiffres
             </small>
           </div>
 
@@ -60,22 +65,10 @@
             <small *ngIf="submitted && myForm.controls['siret'].hasError('required')" class="text-danger">
               SIRET est obligatoire
             </small>
-          </div>
-
-          <!-- Rôle -->
-          <div class="form-group mb-3">
-            <label for="role" class="form-label">Rôle :</label>
-            <select id="role" name="role" class="form-control"
-              formControlName="role" required>
-              <option value="" disabled selected>Choisissez votre rôle</option>
-              <option value="CLIENT">Client</option>
-              <option value="PRESTATAIRE">Prestataire</option>
-            </select>
-            <small *ngIf="submitted && myForm.controls['role'].hasError('required')" class="text-danger">
-              Rôle est obligatoire
+            <small *ngIf="submitted && myForm.controls['siret'].hasError('invalidNumber')" class="text-danger">
+              SIRET doit être composé uniquement de chiffres
             </small>
           </div>
-
           
 
           <!-- Email -->
@@ -117,9 +110,17 @@
             </small>
           </div>
 
-          <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">S'inscrire</button>
+           <div class="d-grid mb-3">
+            <button type="button"  class="btn btn-primary btn-lg" (click)="onRegister()">
+              S'inscrire
+            </button>
           </div>
+
+          <!-- Lien vers la connexion -->
+          <p class="text-center">
+            Vous avez déjà un compte ? 
+            <a routerLink="/login" class="text-decoration-none text-primary fw-bold">Se connecter</a>
+          </p>
         </form>
       </div>
     </div>
