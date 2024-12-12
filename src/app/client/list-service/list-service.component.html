@@ -1,19 +1,19 @@
-<!-- Filtres -->
-<div class="filters">
-    <!-- Filtre par catégorie -->
-    <div class="filter-item">
-      <label for="category-select">Catégorie</label>
-      <select id="category-select" (change)="filterServices()" [(ngModel)]="selectedCategory">
+<!-- Filtres (dans une barre flottante ou section) -->
+<div class="filter-section">
+    <div class="filter-card">
+      <!-- Filtre par catégorie -->
+      <label for="category-select" class="filter-label">Catégorie</label>
+      <select id="category-select" (change)="filterServices()" [(ngModel)]="selectedCategory" class="filter-input">
         <option value="">Toutes les catégories</option>
         <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
       </select>
     </div>
   
-    <!-- Filtre par prix -->
-    <div class="filter-item">
-      <label for="price-range">Prix max</label>
-      <input id="price-range" type="range" min="0" [max]="maxPrice" [(ngModel)]="maxPriceFilter" (input)="filterServices()" />
-      <span>{{ maxPriceFilter }} €</span>
+    <div class="filter-card">
+      <!-- Filtre par prix -->
+      <label for="price-range" class="filter-label">Prix max</label>
+      <input id="price-range" type="range" min="0" [max]="maxPrice" [(ngModel)]="maxPriceFilter" (input)="filterServices()" class="filter-input" />
+      <span class="price-label">{{ maxPriceFilter }} €</span>
     </div>
   
     <!-- Bouton de réinitialisation -->

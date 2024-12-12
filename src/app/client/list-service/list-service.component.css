@@ -1,34 +1,72 @@
-/* Style des filtres */
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 30px;
-  position: relative;
-  top: 100px; /* Ajuste l'espacement si nécessaire */
-}
-
-.filter-item {
+/* Styles de la barre de filtres */
+.filter-section {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #f7f7f7;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  position: relative;
+  top: 100px;
 }
 
-.filter-item label {
+.filter-card {
+  width: 100%;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  top: 50px;
+}
+
+.filter-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.filter-label {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
-#price-range {
-  width: 150px;
+.filter-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.price-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3498db;
+  margin-top: 10px;
 }
 
 .reset-button {
-  padding: 10px 20px;
   background-color: #e74c3c;
   color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -36,29 +74,12 @@
 .reset-button:hover {
   background-color: #c0392b;
 }
-.filter-button {
-  padding: 12px 25px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
-.filter-button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-}
-
-.filter-button:focus {
+.reset-button:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
 }
 
-/* Style du conteneur des services */
+/* Conteneur des services */
 .service-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -66,8 +87,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  position: relative;
-  top: 80px; /* Ajuste l'espacement si nécessaire */
+  margin-top: 100px; /* Dépassement des filtres */
 }
 
 /* Carte de service */
