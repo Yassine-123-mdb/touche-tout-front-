@@ -20,6 +20,8 @@
   overflow-y: auto;
   z-index: 10;
   border-radius: 8px;
+  position: relative;
+  top: 80px;
 }
 
 /* Cartes de filtres */
