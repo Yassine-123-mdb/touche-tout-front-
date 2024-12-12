@@ -1,33 +1,32 @@
-/* Styles de la barre de filtres */
-.filter-section {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100vh;
-  background-color: #f7f7f7;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+/* Conteneur principal */
+.main-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 100;
-  transition: transform 0.3s ease;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 20px;
   position: relative;
+  top: 100px;
 }
 
+/* Section de filtres à gauche */
+.filter-section {
+  flex: 1;
+  min-width: 280px; /* Largeur minimale de la section de filtres */
+  max-width: 300px; /* Largeur maximale de la section de filtres */
+  background-color: #f7f7f7;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Style des cartes de filtres */
 .filter-card {
-  width: 100%;
   margin-bottom: 20px;
-  background: #fff;
+  padding: 15px;
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  transition: box-shadow 0.3s ease;
-}
-
-.filter-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .filter-label {
@@ -42,12 +41,6 @@
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  margin-bottom: 15px;
-}
-
-.filter-input:focus {
-  outline: none;
-  border-color: #3498db;
 }
 
 .price-label {
@@ -76,18 +69,16 @@
   outline: none;
 }
 
-/* Conteneur des services */
+/* Section des services à droite */
 .service-container {
+  flex: 2;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  margin-top: 100px; /* Dépassement des filtres */
+  max-width: 1000px;
 }
 
-/* Carte de service */
+/* Style des cartes de service */
 .service-card {
   background: #fff;
   border-radius: 10px;
@@ -113,7 +104,6 @@
   margin-bottom: 15px;
 }
 
-/* Détails du service */
 .service-details {
   display: flex;
   flex-direction: column;
@@ -140,7 +130,6 @@
   margin-bottom: 20px;
 }
 
-/* Bouton de réservation */
 .select-button {
   display: block;
   width: 100%;
