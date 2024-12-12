@@ -10,42 +10,45 @@
         </div>
 
         <!-- Formulaire -->
-        <form [formGroup]="myForm">
-          <!-- Prénom -->
+        <form [formGroup]="myForm" (ngSubmit)="onRegister()">
+
+          <!-- Nom d'utilisateur -->
           <div class="form-group mb-3">
             <label for="username" class="form-label">Nom d'utilisateur :</label>
             <input id="username" type="text" name="username" class="form-control"
-              formControlName="username" [(ngModel)]="user.username" placeholder="Entrez votre nom d'utilisateur" required>
-            <small *ngIf="myForm.controls['username'].hasError('required') && myForm.controls['username'].touched" class="text-danger">
+              formControlName="username" placeholder="Entrez votre nom d'utilisateur" required>
+            <small *ngIf="submitted && myForm.controls['username'].hasError('required')" class="text-danger">
               Nom d'utilisateur est obligatoire
             </small>
           </div>
+          <!-- Prénom -->
           <div class="form-group mb-3">
             <label for="prenom" class="form-label">Prénom :</label>
             <input id="prenom" type="text" name="prenom" class="form-control"
-              formControlName="prenom" [(ngModel)]="user.prenom" placeholder="Entrez votre prénom" required>
-            <small *ngIf="myForm.controls['prenom'].hasError('required') && myForm.controls['prenom'].touched" class="text-danger">
-              Le prénom est obligatoire
+              formControlName="prenom" placeholder="Entrez votre prénom" required>
+            <small *ngIf="submitted && myForm.controls['prenom'].hasError('required')" class="text-danger">
+              Prénom est obligatoire
             </small>
           </div>
+          
 
           <!-- Adresse -->
           <div class="form-group mb-3">
             <label for="adress" class="form-label">Adresse :</label>
             <input id="adress" type="text" name="adress" class="form-control"
-              formControlName="adress" [(ngModel)]="user.adress" placeholder="Entrez votre adresse" required>
-            <small *ngIf="myForm.controls['adress'].hasError('required') && myForm.controls['adress'].touched" class="text-danger">
-              L'adresse est obligatoire
+              formControlName="adress" placeholder="Entrez votre adresse" required>
+            <small *ngIf="submitted && myForm.controls['adress'].hasError('required')" class="text-danger">
+              Adresse est obligatoire
             </small>
           </div>
 
           <!-- Téléphone -->
           <div class="form-group mb-3">
-            <label for="tel" class="form-label">Téléphone :</label>
+            <label for="tel" class="form-label">Numéro de téléphone :</label>
             <input id="tel" type="text" name="tel" class="form-control"
-              formControlName="tel" [(ngModel)]="user.tel" placeholder="Entrez votre numéro de téléphone" required>
-            <small *ngIf="myForm.controls['tel'].hasError('required') && myForm.controls['tel'].touched" class="text-danger">
-              Le téléphone est obligatoire
+              formControlName="tel" placeholder="Entrez votre numéro de téléphone" required>
+            <small *ngIf="submitted && myForm.controls['tel'].hasError('required')" class="text-danger">
+              Numéro de téléphone est obligatoire
             </small>
           </div>
 
@@ -53,37 +56,37 @@
           <div class="form-group mb-3">
             <label for="siret" class="form-label">SIRET :</label>
             <input id="siret" type="text" name="siret" class="form-control"
-              formControlName="siret" [(ngModel)]="user.siret" placeholder="Entrez votre SIRET" required>
-            <small *ngIf="myForm.controls['siret'].hasError('required') && myForm.controls['siret'].touched" class="text-danger">
-              Le SIRET est obligatoire
+              formControlName="siret" placeholder="Entrez votre numéro SIRET" required>
+            <small *ngIf="submitted && myForm.controls['siret'].hasError('required')" class="text-danger">
+              SIRET est obligatoire
             </small>
           </div>
 
-          <!-- Liste déroulante pour le rôle -->
+          <!-- Rôle -->
           <div class="form-group mb-3">
             <label for="role" class="form-label">Rôle :</label>
-            <select id="role" name="role" class="form-control" formControlName="role">
-              <option value="">Sélectionnez un rôle</option>
+            <select id="role" name="role" class="form-control"
+              formControlName="role" required>
+              <option value="" disabled selected>Choisissez votre rôle</option>
               <option value="CLIENT">Client</option>
               <option value="PRESTATAIRE">Prestataire</option>
             </select>
-            <small *ngIf="myForm.controls['role'].hasError('required') && myForm.controls['role'].touched" class="text-danger">
-              Le rôle est obligatoire
+            <small *ngIf="submitted && myForm.controls['role'].hasError('required')" class="text-danger">
+              Rôle est obligatoire
             </small>
           </div>
 
-          <!-- Nom d'utilisateur -->
           
 
           <!-- Email -->
           <div class="form-group mb-3">
             <label for="email" class="form-label">Email :</label>
             <input id="email" type="email" name="email" class="form-control"
-              formControlName="email" [(ngModel)]="user.email" placeholder="Entrez votre email" required>
-            <small *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched" class="text-danger">
+              formControlName="email" placeholder="Entrez votre email" required>
+            <small *ngIf="submitted && myForm.controls['email'].hasError('required')" class="text-danger">
               Email est obligatoire
             </small>
-            <small *ngIf="myForm.controls['email'].hasError('email') && myForm.controls['email'].touched" class="text-danger">
+            <small *ngIf="submitted && myForm.controls['email'].hasError('email')" class="text-danger">
               Email non valide
             </small>
           </div>
@@ -92,12 +95,15 @@
           <div class="form-group mb-3">
             <label for="password" class="form-label">Mot de passe :</label>
             <input id="password" type="password" name="password" class="form-control"
-              formControlName="password" [(ngModel)]="user.password" placeholder="Entrez votre mot de passe" required>
-            <small *ngIf="myForm.controls['password'].hasError('required') && myForm.controls['password'].touched" class="text-danger">
+              formControlName="password" placeholder="Entrez votre mot de passe" required>
+            <small *ngIf="submitted && myForm.controls['password'].hasError('required')" class="text-danger">
               Mot de passe est obligatoire
             </small>
-            <small *ngIf="myForm.controls['password'].hasError('minlength') && myForm.controls['password'].touched" class="text-danger">
-              Mot de passe doit contenir au moins 6 caractères
+            <small *ngIf="submitted && myForm.controls['password'].hasError('minlength')" class="text-danger">
+              Mot de passe doit contenir au moins 8 caractères
+            </small>
+            <small *ngIf="submitted && myForm.controls['password'].hasError('weakPassword')" class="text-danger">
+              Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.
             </small>
           </div>
 
@@ -105,27 +111,15 @@
           <div class="form-group mb-4">
             <label for="confirmPassword" class="form-label">Confirmer mot de passe :</label>
             <input id="confirmPassword" type="password" name="confirmPassword" class="form-control"
-              formControlName="confirmPassword" placeholder="Confirmer votre mot de passe" required>
-            <small *ngIf="myForm.controls['confirmPassword'].hasError('required') && myForm.controls['confirmPassword'].touched" class="text-danger">
-              Confirmer mot de passe est obligatoire
-            </small>
-            <small *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.value !== myForm.get('password')?.value" class="text-danger">
+              formControlName="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+            <small *ngIf="submitted && myForm.hasError('notMatching')" class="text-danger">
               Les mots de passe ne correspondent pas
             </small>
           </div>
 
-          <!-- Bouton d'inscription -->
-          <div class="d-grid mb-3">
-            <button type="button" [disabled]="myForm.invalid" class="btn btn-primary btn-lg" (click)="onRegister()">
-              S'inscrire
-            </button>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
           </div>
-
-          <!-- Lien vers la connexion -->
-          <p class="text-center">
-            Vous avez déjà un compte ? 
-            <a routerLink="/login" class="text-decoration-none text-primary fw-bold">Se connecter</a>
-          </p>
         </form>
       </div>
     </div>

@@ -12,8 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   public user = new User();
-  confirmPassword!: string; // Propriété pour stocker la confirmation du mot de passe
   myForm!: FormGroup;
+  submitted = false; // Added flag for form submission
   err: any;
 
   constructor(
@@ -30,10 +30,10 @@ export class RegisterComponent implements OnInit {
         adress: ['', [Validators.required]],
         tel: ['', [Validators.required]],
         siret: ['', [Validators.required]],
-        role: ['', [Validators.required]], // Ajout du champ rôle
+        role: ['', [Validators.required]],
         username: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(8), this.passwordStrengthValidator]],
         confirmPassword: ['', [Validators.required]],
       },
       {
@@ -42,23 +42,44 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  // Validator to check if passwords match
   passwordsMatchValidator(group: FormGroup): any {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
     return password === confirmPassword
       ? null
-      : { notMatching: true }; // Ajout d'une erreur personnalisée
+      : { notMatching: true };
   }
 
+  // Password strength validation
+  passwordStrengthValidator(control: any): any {
+    const password = control.value;
+    if (password && !/(?=.*[A-Z])/.test(password)) {
+      return { weakPassword: true };
+    }
+    return null;
+  }
+
+  // Submit method
   onRegister(): void {
+    this.submitted = true; // Set submitted flag to true
+
     if (this.myForm.invalid) {
       this.err = 'Veuillez remplir correctement le formulaire.';
       return;
     }
 
-    // Assurez-vous que le rôle est assigné à l'utilisateur
+    // Assign the user data
     this.user.roles = this.myForm.get('role')?.value;
-    console.log(this.user);
+    this.user.prenom = this.myForm.get('prenom')?.value;
+    this.user.adress = this.myForm.get('adress')?.value;
+    this.user.tel = this.myForm.get('tel')?.value;
+    this.user.siret = this.myForm.get('siret')?.value;
+    this.user.username = this.myForm.get('username')?.value;
+    this.user.email = this.myForm.get('email')?.value;
+    this.user.password = this.myForm.get('password')?.value;
+
+    // Call the registration service
     this.authService.registerUser(this.user).subscribe({
       next: () => {
         this.authService.setRegistredUser(this.user);
