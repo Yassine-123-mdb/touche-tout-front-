@@ -1,25 +1,26 @@
 /* Conteneur principal */
 .main-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-  margin: 20px;
-  position: relative;
-  top: 100px;
+  justify-content: flex-start;
+  padding-top: 20px;
 }
 
-/* Section de filtres à gauche */
+/* Barre de filtres fixée à gauche */
 .filter-section {
-  flex: 1;
-   /* Largeur maximale de la section de filtres */
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 250px;
+  height: 100vh;
   background-color: #f7f7f7;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 10;
   border-radius: 8px;
 }
 
-/* Style des cartes de filtres */
+/* Cartes de filtres */
 .filter-card {
   margin-bottom: 20px;
   padding: 15px;
@@ -70,18 +71,19 @@
 
 /* Section des services à droite */
 .service-container {
-  flex: 2;
+  margin-left: 280px; /* Décalage pour laisser de la place à la barre de filtres */
+  width: calc(100% - 280px);
+  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1000px;
 }
 
-/* Style des cartes de service */
+/* Carte de service */
 .service-card {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -91,10 +93,11 @@
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Image du service */
 .service-image {
   width: 100%;
   height: 200px;
@@ -103,6 +106,7 @@
   margin-bottom: 15px;
 }
 
+/* Détails du service */
 .service-details {
   display: flex;
   flex-direction: column;

@@ -1,9 +1,8 @@
-<!-- Conteneur global avec une disposition en deux colonnes -->
+<!-- Conteneur global -->
 <div class="main-container">
-    <!-- Barre de filtres à gauche -->
+    <!-- Barre de filtres fixée à gauche -->
     <div class="filter-section">
       <div class="filter-card">
-        <!-- Filtre par catégorie -->
         <label for="category-select" class="filter-label">Catégorie</label>
         <select id="category-select" (change)="filterServices()" [(ngModel)]="selectedCategory" class="filter-input">
           <option value="">Toutes les catégories</option>
@@ -12,13 +11,11 @@
       </div>
   
       <div class="filter-card">
-        <!-- Filtre par prix -->
         <label for="price-range" class="filter-label">Prix max</label>
         <input id="price-range" type="range" min="0" [max]="maxPrice" [(ngModel)]="maxPriceFilter" (input)="filterServices()" class="filter-input" />
         <span class="price-label">{{ maxPriceFilter }} €</span>
       </div>
   
-      <!-- Bouton de réinitialisation -->
       <button class="reset-button" (click)="resetFilters()">Réinitialiser</button>
     </div>
   
