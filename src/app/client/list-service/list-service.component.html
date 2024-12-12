@@ -1,8 +1,18 @@
-<div class="service-container">
-    <div *ngFor="let service of services" class="service-card">
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-        <p>Prix : {{ service.price }} €</p>
+<div class="filters">
+    <button *ngFor="let category of categories" (click)="filterByCategory(category)" class="filter-button">
+      {{ category }}
+    </button>
+  </div>
+  
+  <div class="service-container">
+    <div *ngFor="let service of filteredServices" class="service-card">
+      <img *ngIf="service.image" [src]="service.image" alt="Image de {{ service.title }}" class="service-image" />
+      <div class="service-details">
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+        <p class="service-price">Prix : {{ service.price }} €</p>
+        <button class="select-button" (click)="selectService(service)">Réserver</button>
       </div>
+    </div>
   </div>
   
