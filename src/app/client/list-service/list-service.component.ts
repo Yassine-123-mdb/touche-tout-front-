@@ -10,6 +10,9 @@ export class ListServiceComponent implements OnInit {
   services: any[] = [];
   filteredServices: any[] = [];
   categories: string[] = [];
+  selectedCategory: string = '';
+  maxPrice: number = 0;
+  maxPriceFilter: number = 0;  // Le filtre du prix maximum
 
   constructor(private monService: MonServiceService) {}
 
@@ -24,6 +27,8 @@ export class ListServiceComponent implements OnInit {
         this.services = data;
         this.filteredServices = data; // Initialiser avec tous les services
         this.categories = this.getCategories(data); // Récupérer les catégories
+        this.maxPrice = Math.max(...data.map(service => service.price)); // Trouver le prix max
+        this.maxPriceFilter = this.maxPrice;  // Initialiser avec le prix max
         console.log('Services chargés :', data);
       },
       (error) => {
@@ -37,17 +42,25 @@ export class ListServiceComponent implements OnInit {
     return [...new Set(services.map(service => service.category))];
   }
 
-  // Filtrer les services par catégorie
-  filterByCategory(category: string): void {
-    if (category === 'Tous') {
-      this.filteredServices = this.services;
-    } else {
-      this.filteredServices = this.services.filter(service => service.category === category);
-    }
+  // Filtrer les services par catégorie et prix
+  filterServices(): void {
+    this.filteredServices = this.services.filter(service => {
+      return (
+        (this.selectedCategory ? service.category === this.selectedCategory : true) &&
+        service.price <= this.maxPriceFilter
+      );
+    });
+  }
+
+  // Réinitialiser les filtres
+  resetFilters(): void {
+    this.selectedCategory = '';
+    this.maxPriceFilter = this.maxPrice;
+    this.filterServices();
   }
 
   // Sélectionner un service pour la réservation
-  selectService(service: any) {
+  selectService(service: any): void {
     console.log('Service sélectionné :', service);
     // Ajoutez la logique pour réserver le service, rediriger vers une page de détails ou ajouter à un panier.
   }

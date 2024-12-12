@@ -8,6 +8,34 @@
   top: 100px; /* Ajuste l'espacement si nécessaire */
 }
 
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filter-item label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#price-range {
+  width: 150px;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #c0392b;
+}
 .filter-button {
   padding: 12px 25px;
   background-color: #3498db;
