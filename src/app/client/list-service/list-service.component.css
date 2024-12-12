@@ -3,6 +3,8 @@
   display: flex;
   justify-content: flex-start;
   padding-top: 20px;
+  position: relative;
+  top: 100px;
 }
 
 /* Barre de filtres fixée à gauche */
