@@ -12,8 +12,7 @@
 /* Section de filtres à gauche */
 .filter-section {
   flex: 1;
-  min-width: 280px; /* Largeur minimale de la section de filtres */
-  max-width: 300px; /* Largeur maximale de la section de filtres */
+   /* Largeur maximale de la section de filtres */
   background-color: #f7f7f7;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
