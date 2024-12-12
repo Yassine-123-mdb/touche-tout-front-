@@ -3,6 +3,8 @@
   display: flex;
   justify-content: center;
   gap: 15px;
+  position: relative;
+  top: 100px;
   margin-bottom: 100px;
 }
 
