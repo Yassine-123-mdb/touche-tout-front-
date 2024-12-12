@@ -1,8 +1,5 @@
 <div class="filters">
-    <button *ngFor="let category of categories" (click)="filterByCategory(category)" class="filter-button">
-      {{ category }}
-    </button>
-  </div>
+    
   
   <div class="service-container">
     <div *ngFor="let service of filteredServices" class="service-card">
@@ -13,6 +10,10 @@
         <p class="service-price">Prix : {{ service.price }} €</p>
         <button class="select-button" (click)="selectService(service)">Réserver</button>
       </div>
+    </div>
+    <button *ngFor="let category of categories" (click)="filterByCategory(category)" class="filter-button">
+        {{ category }}
+      </button>
     </div>
   </div>
   
