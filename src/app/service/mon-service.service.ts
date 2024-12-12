@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class MonServiceService {
-  private apiUrl = 'https://back-touch-a-tout-production.up.railway.app/api/services';
+  private apiUrl = 'https://back-touch-a-tout-production.up.railway.app';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -15,7 +15,7 @@ export class MonServiceService {
   getServices(): Observable<any[]> {
     const userId = this.authService.getCurrentUserId();
     
-    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/api/services/user/${userId}`);
   }
   getAllServices(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/allService`);
@@ -24,17 +24,17 @@ export class MonServiceService {
   // Ajouter un nouveau service pour l'utilisateur connecté
   addService(service: any): Observable<any> {
     const userId = this.authService.getCurrentUserId();
-    return this.http.post(`${this.apiUrl}/add/${userId}`, service);
+    return this.http.post(`${this.apiUrl}/api/services/add/${userId}`, service);
   }
 
   // Mettre à jour un service existant
   updateService(serviceId: string, service: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update/${serviceId}`, service);
+    return this.http.put(`${this.apiUrl}/api/services/update/${serviceId}`, service);
   }
 
   // Supprimer un service par ID
   deleteService(serviceId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${serviceId}`, { responseType: 'text' }).pipe(
+    return this.http.delete(`${this.apiUrl}/api/services/delete/${serviceId}`, { responseType: 'text' }).pipe(
       catchError((error) => {
         console.error('Erreur lors de la suppression du service', error);
         throw error;
