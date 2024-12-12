@@ -18,7 +18,7 @@ export class MonServiceService {
     return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
   getAllServices(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+    return this.http.get<any[]>(`${this.apiUrl}/allService`);
   }
 
   // Ajouter un nouveau service pour l'utilisateur connecté
