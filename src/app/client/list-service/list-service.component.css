@@ -4,7 +4,6 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 30px;
-  top: 100px;
 }
 
 .filter-button {
@@ -30,6 +29,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 60px; /* Ajout d'un espace supplémentaire en bas pour compenser la navbar fixe */
+  margin-top: 80px; /* Ajout de marge pour que le contenu commence sous le navbar */
 }
 
 /* Carte de service */
