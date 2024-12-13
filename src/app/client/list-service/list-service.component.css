@@ -1,163 +1,87 @@
 /* Conteneur principal */
 .main-container {
   display: flex;
-  justify-content: flex-start;
-  padding-top: 20px;
-  position: relative;
-  top: 100px;
-}
-
-/* Barre de filtres fixée à gauche */
-.filter-section {
-  position: fixed;
-  top: 20px;
-  left: 0;
-  width: 250px;
-  height: 100vh;
-  background-color: #f7f7f7;
+  gap: 20px;
   padding: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  z-index: 10;
-  border-radius: 8px;
-  position: absolute;
-  top: 100px;
 }
 
-/* Cartes de filtres */
+/* Barre de filtres */
+.filter-section {
+  width: 250px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Cartes des filtres */
 .filter-card {
   margin-bottom: 20px;
-  padding: 15px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.filter-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 1.1rem;
 }
 
 .filter-input {
   width: 100%;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.price-label {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #3498db;
-  margin-top: 10px;
-}
-
+/* Bouton Réinitialiser */
 .reset-button {
-  background-color: #e74c3c;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
+  background-color: #ff6b6b;
+  color: #fff;
   border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .reset-button:hover {
-  background-color: #c0392b;
+  background-color: #e63946;
 }
 
-.reset-button:focus {
-  outline: none;
-}
-
-/* Section des services à droite */
+/* Section des services */
 .service-container {
-  margin-left: 280px; /* Décalage pour laisser de la place à la barre de filtres */
-  width: calc(100% - 280px);
-  padding: 20px;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 20px;
 }
 
-/* Carte de service */
 .service-card {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Image du service */
 .service-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 15px;
 }
 
-/* Détails du service */
-.service-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.service-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.service-description {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 15px;
-  line-height: 1.4;
-}
-
-.service-price {
+.no-results {
   font-size: 1.2rem;
-  font-weight: bold;
-  color: #27ae60;
-  margin-bottom: 20px;
-}
-
-.select-button {
-  display: block;
-  width: 100%;
+  color: #999;
   text-align: center;
-  padding: 12px 15px;
-  background-color: #27ae60;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.select-button:hover {
-  background-color: #219150;
-  transform: translateY(-2px);
-}
-
-.select-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(39, 174, 96, 0.7);
+  margin-top: 50px;
 }

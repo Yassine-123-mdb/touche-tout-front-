@@ -1,35 +1,50 @@
-<!-- Conteneur global -->
 <div class="main-container">
-    <!-- Barre de filtres fixée à gauche -->
-    <div class="filter-section">
-      <div class="filter-card">
-        <label for="category-select" class="filter-label">Catégorie</label>
-        <select id="category-select" (change)="filterServices()" [(ngModel)]="selectedCategory" class="filter-input">
-          <option value="">Toutes les catégories</option>
-          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-        </select>
-      </div>
-  
-      <div class="filter-card">
-        <label for="price-range" class="filter-label">Prix max</label>
-        <input id="price-range" type="range" min="0" [max]="maxPrice" [(ngModel)]="maxPriceFilter" (input)="filterServices()" class="filter-input" />
-        <span class="price-label">{{ maxPriceFilter }} €</span>
-      </div>
-  
-      <button class="reset-button" (click)="resetFilters()">Réinitialiser</button>
+  <!-- Barre de filtres -->
+  <div class="filter-section">
+    <h2>Filtrer les Services</h2>
+    <div class="filter-card">
+      <label for="category-select" class="filter-label">Catégorie</label>
+      <select id="category-select" (change)="filterServices()" [(ngModel)]="selectedCategory" class="filter-input">
+        <option value="">Toutes les catégories</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
     </div>
-  
-    <!-- Section des services affichés à droite -->
-    <div class="service-container">
-      <div *ngFor="let service of filteredServices" class="service-card">
-        <img *ngIf="service.image" [src]="service.image" alt="Image de {{ service.title }}" class="service-image" />
-        <div class="service-details">
-          <h3 class="service-title">{{ service.title }}</h3>
-          <p class="service-description">{{ service.description }}</p>
-          <p class="service-price">Prix : {{ service.price }} €</p>
-          <button class="select-button" (click)="selectService(service)">Réserver</button>
-        </div>
+
+    <div class="filter-card">
+      <label for="price-range" class="filter-label">Prix maximum</label>
+      <input
+        id="price-range"
+        type="range"
+        min="0"
+        [max]="maxPrice"
+        [(ngModel)]="maxPriceFilter"
+        (input)="filterServices()"
+        class="filter-input"
+      />
+      <span class="price-label">{{ maxPriceFilter }} €</span>
+    </div>
+
+    <button class="reset-button" (click)="resetFilters()">Réinitialiser</button>
+  </div>
+
+  <!-- Section des services -->
+  <div class="service-container">
+    <div *ngIf="!filteredServices.length" class="no-results">
+      Aucun service ne correspond à vos critères.
+    </div>
+    <div *ngFor="let service of filteredServices" class="service-card">
+      <img
+        *ngIf="service.image"
+        [src]="service.image"
+        alt="Image de {{ service.title }}"
+        class="service-image"
+      />
+      <div class="service-details">
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+        <p class="service-price">Prix : {{ service.price }} €</p>
+        <button class="select-button" (click)="selectService(service)">Réserver</button>
       </div>
     </div>
   </div>
-  
+</div>
