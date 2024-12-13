@@ -1,13 +1,29 @@
-<div class="reservations-container">
-    <h1>Mes Réservations</h1>
-    <div *ngIf="reservations.length === 0">Aucune réservation pour le moment.</div>
-    <ul *ngIf="reservations.length > 0">
-      <li *ngFor="let reservation of reservations">
-        <h3>{{ reservation.service }}</h3>
-        <p>Date : {{ reservation.date }}</p>
+<div class="service-card" *ngFor="let service of services">
+  <h3>{{ service.title }}</h3>
+  <p>{{ service.description }}</p>
+  <p>Prix : {{ service.price }} €</p>
+  <button class="reserve-button" (click)="openReservationModal(service)">Réserver</button>
+</div>
 
-        <p>Statut : {{ reservation.status }}</p>
-      </li>
-    </ul>
+<!-- Modal pour la réservation -->
+<div *ngIf="isModalOpen" class="modal">
+  <div class="modal-content">
+    <h2>Réserver : {{ selectedService.title }}</h2>
+    <label for="calendar">Choisissez une date :</label>
+    <input type="date" id="calendar" [min]="minDate" [max]="maxDate" (change)="onDateSelect($event)" />
+
+    <div *ngIf="availableHours.length > 0">
+      <label for="time-select">Choisissez une heure :</label>
+      <select id="time-select" (change)="onTimeSelect($event)">
+        <option *ngFor="let hour of availableHours" [value]="hour" [disabled]="hour.isBooked">{{ hour.time }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="availableHours.length === 0 && selectedDate">
+      <p>Aucune disponibilité pour cette date, veuillez en choisir une autre.</p>
+    </div>
+
+    <button *ngIf="selectedDate && selectedTime" (click)="confirmReservation()">Confirmer la réservation</button>
+    <button (click)="closeModal()">Annuler</button>
   </div>
-  
+</div>

@@ -41,5 +41,11 @@ export class MonServiceService {
       })
     );
   }
+
+
+  // Réserver un service
+  reserveService(userId: number, reservation: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/reservations/create/${userId}`, reservation);
+  }
   
 }

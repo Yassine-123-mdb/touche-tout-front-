@@ -44,18 +44,13 @@ export class ListServiceComponent implements OnInit {
 
   // Filtrer les services par catégorie et prix
   filterServices(): void {
-    this.filteredServices = this.services.filter((service) => {
+    this.filteredServices = this.services.filter(service => {
       return (
-        (!this.selectedCategory || service.category === this.selectedCategory) &&
+        (this.selectedCategory ? service.category === this.selectedCategory : true) &&
         service.price <= this.maxPriceFilter
       );
     });
-  
-    if (!this.filteredServices.length) {
-      console.warn('Aucun service trouvé pour les critères sélectionnés.');
-    }
   }
-  
 
   // Réinitialiser les filtres
   resetFilters(): void {
