@@ -1,23 +1,22 @@
+<div class="reservation-container">
+  <h2>Réserver : {{ selectedService?.title }}</h2>
+  <p class="service-description">{{ selectedService?.description }}</p>
+  <p class="service-price">Prix : {{ selectedService?.price }} €</p>
 
-<!-- Modal pour la réservation -->
-<div *ngIf="isModalOpen" class="modal">
-  <div class="modal-content">
-    <h2>Réserver : {{ selectedService.title }}</h2>
-    <label for="calendar">Choisissez une date :</label>
-    <input type="date" id="calendar" [min]="minDate" [max]="maxDate" (change)="onDateSelect($event)" />
+  <label for="calendar">Choisissez une date :</label>
+  <input type="date" id="calendar" [min]="minDate" [max]="maxDate" (change)="onDateSelect($event)" />
 
-    <div *ngIf="availableHours.length > 0">
-      <label for="time-select">Choisissez une heure :</label>
-      <select id="time-select" (change)="onTimeSelect($event)">
-        <option *ngFor="let hour of availableHours" [value]="hour" [disabled]="hour.isBooked">{{ hour.time }}</option>
-      </select>
-    </div>
-
-    <div *ngIf="availableHours.length === 0 && selectedDate">
-      <p>Aucune disponibilité pour cette date, veuillez en choisir une autre.</p>
-    </div>
-
-    <button *ngIf="selectedDate && selectedTime" (click)="confirmReservation()">Confirmer la réservation</button>
-    <button (click)="closeModal()">Annuler</button>
+  <div *ngIf="availableHours.length > 0">
+    <label for="time-select">Choisissez une heure :</label>
+    <select id="time-select" (change)="onTimeSelect($event)">
+      <option *ngFor="let hour of availableHours" [value]="hour.time" [disabled]="hour.isBooked">{{ hour.time }}</option>
+    </select>
   </div>
+
+  <div *ngIf="availableHours.length === 0 && selectedDate">
+    <p>Aucune disponibilité pour cette date, veuillez en choisir une autre.</p>
+  </div>
+
+  <button *ngIf="selectedDate && selectedTime" (click)="confirmReservation()">Confirmer la réservation</button>
+  <button (click)="goBack()">Annuler</button>
 </div>

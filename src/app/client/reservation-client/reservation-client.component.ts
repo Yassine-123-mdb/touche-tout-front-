@@ -83,4 +83,7 @@ export class ReservationClientComponent implements OnInit {
       );
     }
   }
+  goBack(): void {
+    this.router.navigate(['/list-services']);
+  }
 }
