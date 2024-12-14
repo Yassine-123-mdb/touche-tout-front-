@@ -54,6 +54,6 @@ export class ListServiceComponent implements OnInit {
   }
 
   openReservation(service: any): void {
-    this.router.navigate(['reserveclient'], { state: { service } });
+    this.router.navigate(['client', 'reserveclient'], { state: { service } });
   }
 }
