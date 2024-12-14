@@ -1,9 +1,3 @@
-<div class="service-card" *ngFor="let service of services">
-  <h3>{{ service.title }}</h3>
-  <p>{{ service.description }}</p>
-  <p>Prix : {{ service.price }} €</p>
-  <button class="reserve-button" (click)="openReservationModal(service)">Réserver</button>
-</div>
 
 <!-- Modal pour la réservation -->
 <div *ngIf="isModalOpen" class="modal">
