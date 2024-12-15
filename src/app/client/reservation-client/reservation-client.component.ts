@@ -43,21 +43,21 @@ export class ReservationClientComponent implements OnInit {
   confirmReservation(): void {
     const reservation = {
       serviceId: this.selectedService.id,
-      date: this.selectedDate,
-      time: this.selectedTime
+      reservation_date: this.selectedDate,
+      reservation_time: this.selectedTime
     };
     console.log(reservation);
 
     this.monServiceService.reserveService(reservation).subscribe(
       () => {
         alert('Réservation confirmée !');
-        this.router.navigate(['/list-services']);
+        this.router.navigate(['/listService']);
       },
       (error) => alert('Erreur lors de la réservation : ' + error)
     );
   }
 
   goBack(): void {
-    this.router.navigate(['/list-services']);
+    this.router.navigate(['/listService']);
   }
 }
