@@ -44,7 +44,9 @@ export class MonServiceService {
 
 
   // Réserver un service
-  reserveService(userId: number, reservation: any): Observable<any> {
+  reserveService(reservation: any): Observable<any> {
+    const userId = this.authService.getCurrentUserId();
+    console.log(userId);
     return this.http.post(`${this.apiUrl}/api/reservations/create/${userId}`, reservation);
   }
   

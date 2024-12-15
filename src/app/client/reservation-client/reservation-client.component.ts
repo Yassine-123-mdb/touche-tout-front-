@@ -48,7 +48,7 @@ export class ReservationClientComponent implements OnInit {
     };
     console.log(reservation);
 
-    this.monServiceService.reserveService(this.iduser,reservation).subscribe(
+    this.monServiceService.reserveService(reservation).subscribe(
       () => {
         alert('Réservation confirmée !');
         this.router.navigate(['/list-services']);
