@@ -1,22 +1,28 @@
 <div class="reservation-container">
-  <h2>Réserver : {{ selectedService?.title }}</h2>
+  <h2 class="reservation-title">Réserver : {{ selectedService?.title }}</h2>
   <p class="service-description">{{ selectedService?.description }}</p>
-  <p class="service-price">Prix : {{ selectedService?.price }} €</p>
+  <p class="service-price">Prix : <span>{{ selectedService?.price }} €</span></p>
 
-  <label for="calendar">Choisissez une date :</label>
-  <input type="date" id="calendar" [min]="minDate" [max]="maxDate" (change)="onDateSelect($event)" />
+  <div class="form-group">
+    <label for="calendar" class="form-label">Choisissez une date :</label>
+    <input type="date" id="calendar" class="form-input" [min]="minDate" [max]="maxDate" (change)="onDateSelect($event)" />
+  </div>
 
-  <div *ngIf="availableHours.length > 0">
-    <label for="time-select">Choisissez une heure :</label>
-    <select id="time-select" (change)="onTimeSelect($event)">
-      <option *ngFor="let hour of availableHours" [value]="hour.time" [disabled]="hour.isBooked">{{ hour.time }}</option>
+  <div *ngIf="availableHours.length > 0" class="form-group">
+    <label for="time-select" class="form-label">Choisissez une heure :</label>
+    <select id="time-select" class="form-input" (change)="onTimeSelect($event)">
+      <option *ngFor="let hour of availableHours" [value]="hour.time" [disabled]="hour.isBooked">
+        {{ hour.time }} <span *ngIf="hour.isBooked">(Réservé)</span>
+      </option>
     </select>
   </div>
 
-  <div *ngIf="availableHours.length === 0 && selectedDate">
+  <div *ngIf="availableHours.length === 0 && selectedDate" class="no-availability">
     <p>Aucune disponibilité pour cette date, veuillez en choisir une autre.</p>
   </div>
 
-  <button *ngIf="selectedDate && selectedTime" (click)="confirmReservation()">Confirmer la réservation</button>
-  <button (click)="goBack()">Annuler</button>
+  <div class="button-group">
+    <button class="confirm-button" *ngIf="selectedDate && selectedTime" (click)="confirmReservation()">Confirmer</button>
+    <button class="cancel-button" (click)="goBack()">Annuler</button>
+  </div>
 </div>
