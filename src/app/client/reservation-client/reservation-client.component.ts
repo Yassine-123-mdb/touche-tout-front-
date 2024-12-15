@@ -30,9 +30,9 @@ export class ReservationClientComponent implements OnInit {
     this.selectedDate = event.target.value;
     // Simuler les heures disponibles
     this.availableHours = [
-      { time: '10:00', isBooked: false },
-      { time: '11:00', isBooked: false },
-      { time: '14:00', isBooked: true }
+      { time: '10:00:00', isBooked: false },
+      { time: '11:00:00', isBooked: false },
+      { time: '14:00:00', isBooked: true }
     ];
   }
 
@@ -43,8 +43,8 @@ export class ReservationClientComponent implements OnInit {
   confirmReservation(): void {
     const reservation = {
       serviceId: this.selectedService.id,
-      reservation_date: this.selectedDate,
-      reservation_time: this.selectedTime
+      reservationDate: this.selectedDate,
+      reservationTime: this.selectedTime
     };
     console.log(reservation);
 
