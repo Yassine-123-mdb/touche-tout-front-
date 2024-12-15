@@ -51,13 +51,13 @@ export class ReservationClientComponent implements OnInit {
     this.monServiceService.reserveService(reservation).subscribe(
       () => {
         alert('Réservation confirmée !');
-        this.router.navigate(['/listService']);
+        this.router.navigate(['listService']);
       },
       (error) => alert('Erreur lors de la réservation : ' + error)
     );
   }
 
   goBack(): void {
-    this.router.navigate(['/listService']);
+    this.router.navigate(['listService']);
   }
 }
