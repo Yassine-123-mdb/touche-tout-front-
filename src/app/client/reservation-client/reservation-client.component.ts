@@ -46,6 +46,7 @@ export class ReservationClientComponent implements OnInit {
       date: this.selectedDate,
       time: this.selectedTime
     };
+    console.log(reservation);
 
     this.monServiceService.reserveService(this.iduser,reservation).subscribe(
       () => {
