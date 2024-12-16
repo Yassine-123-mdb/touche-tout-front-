@@ -53,7 +53,7 @@ export class ReservationClientComponent implements OnInit {
         alert('Réservation confirmée !');
         this.router.navigate(['listService']);
       },
-      (error) => alert('Erreur lors de la réservation : ' + error)
+      (error) => alert('le service est déjà réservé pour la date que vous choisi ' )
     );
   }
 
